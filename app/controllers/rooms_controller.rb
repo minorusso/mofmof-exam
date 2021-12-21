@@ -20,8 +20,20 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
   end
 
-  # # GET /rooms/1/edit
-  # def edit; end
+  def edit
+    @room = Room.find(params[:id])
+  end
+
+  def update
+    @room = Room.find(params[:id])
+    if @room.update(room_params)
+      redirect_to rooms_path, notice: "物件情報を編集しました！"
+    else
+      render :edit
+    end
+  end
+
+
 
   # # POST /rooms or /rooms.json
   # def create
