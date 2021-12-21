@@ -1,0 +1,38 @@
+<h1>物件編集</h1>
+<%= form_with(model: @room, local: true) do |form| %>
+  <% if @room.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @room.errors.count %>件のエラーがあります。</h2>
+      <ul>
+      <% @room.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="name">
+    <%= form.label :物件名 %>
+    <%= form.text_field :name %>
+  </div>
+  <div class="rent">
+    <%= form.label :賃料 %>
+    <%= form.text_field :rent %>
+  </div>
+  <div class="address">
+    <%= form.label :住所 %>
+    <%= form.text_field :address %>
+  </div>
+  <div class="age">
+    <%= form.label :築年数 %>
+    <%= form.text_field :age %>
+  </div>
+  <div class="note">
+    <%= form.label :備考 %>
+    <%= form.text_field :note %>
+  </div>
+  <div class="actions">
+  <%= form.submit %>
+  </div>
+
+
+<% end %>
