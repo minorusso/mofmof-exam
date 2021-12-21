@@ -1,4 +1,5 @@
 class RoomsController < ApplicationController
+  before_action :set_room, only: [:show, :edit, :update]
   def index
     @rooms = Room.all
   end
@@ -17,15 +18,12 @@ class RoomsController < ApplicationController
   end
 
   def show
-    @room = Room.find(params[:id])
   end
 
   def edit
-    @room = Room.find(params[:id])
   end
 
   def update
-    @room = Room.find(params[:id])
     if @room.update(room_params)
       redirect_to rooms_path, notice: "物件情報を編集しました！"
     else
@@ -75,11 +73,11 @@ class RoomsController < ApplicationController
   #   end
   # end
 
-  # private
+  private
 
-  # def set_room
-  #   @room = room.find(params[:id])
-  # end
+  def set_room
+    @room = Room.find(params[:id])
+  end
 
   def room_params
     params.require(:room).permit(:name, :rent, :address, :age, :note)
