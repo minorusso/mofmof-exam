@@ -8,17 +8,12 @@ class RoomsController < ApplicationController
   end
 
   def create
-    Room.create(room_params)
-    redirect_to rooms_path
-  #   @room = current_user.rooms.build(room_params)
-  #   if params[:back]
-  #     render :new
-  #   elsif @room.save
-  #     ConfirmMailer.confirm_mail(@room).deliver
-  #     redirect_to rooms_path, notice: '確認メールを送信しました。'
-  #   else
-  #     render :new
-  #   end
+    @room = Room.new(room_params)
+    if @room.save
+      redirect_to rooms_path notice: "物件情報を追加しました！"
+    else
+      render :new
+    end
   end
 
   def show

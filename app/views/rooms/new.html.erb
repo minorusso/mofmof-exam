@@ -1,4 +1,14 @@
 <%= form_with(model: @room, local: true) do |form| %>
+  <% if @room.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @room.errors.count %>件のエラーがあります。</h2>
+      <ul>
+      <% @room.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
   <div class="name">
     <%= form.label :物件名 %>
     <%= form.text_field :name %>
