@@ -15,7 +15,7 @@
     <td><%= room.note %></td>
     <td><%= link_to '詳細', room_path(room.id) %></td>
     <td><%= link_to '編集', edit_room_path(room.id) %></td>
-    
+    <td><%= link_to '削除', room_path(room.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
   </tr>
   <% end %>
 </table>

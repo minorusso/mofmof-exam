@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-  before_action :set_room, only: [:show, :edit, :update]
+  before_action :set_room, only: [:show, :edit, :update, :destroy]
   def index
     @rooms = Room.all
   end
@@ -29,6 +29,11 @@ class RoomsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @room.destroy
+    redirect_to rooms_path, notice:"物件情報を削除しました！"
   end
 
 
