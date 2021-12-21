@@ -13,16 +13,10 @@
     <td><%= room.age %></td>
     <th>備考</th>
     <td><%= room.note %></td>
-
-  </tr>
-  <%# <td><%= link_to '詳細', room_path %></td> %>
-  <%# <td><%= link_to '編集', edit_room_path(room) %></td> %>
-  <%# <td><%= link_to '削除', room, method: :delete, data: { confirm: 'Are you sure?' } %></td> %>
-  <% end %>
+    <td><%= link_to '詳細', room_path(room.id) %></td>
+    
   </tr>
   <% end %>
 </table>
+<td><%= link_to '物件を登録する', new_room_path %></td>
 
-<br>
-
-<%= link_to '登録', new_room_path %>
