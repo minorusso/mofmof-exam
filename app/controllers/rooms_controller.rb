@@ -6,6 +6,7 @@ class RoomsController < ApplicationController
 
   def new
     @room = Room.new
+    2.times { @room.stations.build }
   end
 
   def create
@@ -21,6 +22,7 @@ class RoomsController < ApplicationController
   end
 
   def edit
+    @room.stations.build
   end
 
   def update
@@ -36,56 +38,22 @@ class RoomsController < ApplicationController
     redirect_to rooms_path, notice:"物件情報を削除しました！"
   end
 
-
-
-  # # POST /rooms or /rooms.json
-  # def create
-  #   @room = current_user.rooms.build(room_params)
-  #   if params[:back]
-  #     render :new
-  #   elsif @room.save
-  #     ConfirmMailer.confirm_mail(@room).deliver
-  #     redirect_to rooms_path, notice: '確認メールを送信しました。'
-  #   else
-  #     render :new
-  #   end
-  # end
-
-  # def confirm
-  #   @room = current_user.rooms.build(room_params)
-  #   render :new if @room.invalid?
-  # end
-
-  # # PATCH/PUT /rooms/1 or /rooms/1.json
-  # def update
-  #   respond_to do |format|
-  #     if @room.update(room_params)
-  #       format.html { redirect_to @room, notice: 'room was successfully updated.' }
-  #       format.json { render :show, status: :ok, location: @room }
-  #     else
-  #       format.html { render :edit, status: :unprocessable_entity }
-  #       format.json { render json: @room.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
-
-  # # DELETE /rooms/1 or /rooms/1.json
-  # def destroy
-  #   @room.destroy
-  #   respond_to do |format|
-  #     format.html { redirect_to rooms_url, notice: 'room was successfully destroyed.' }
-  #     format.json { head :no_content }
-  #   end
-  # end
-
   private
-
   def set_room
     @room = Room.find(params[:id])
   end
 
   def room_params
-    params.require(:room).permit(:name, :rent, :address, :age, :note)
+    params.require(:room).permit(
+                                  :name,
+                                  :rent,
+                                  :address,
+                                  :age, 
+                                  :note,
+                                  stations_attributes:[
+                                                      :line,
+                                                      :station,
+                                                      :on_foot])
   end
 
 end

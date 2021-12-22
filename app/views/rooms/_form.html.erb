@@ -29,7 +29,21 @@
     <%= form.label :備考 %>
     <%= form.text_field :note %>
   </div>
-  <div class="actions">
-  <%= form.submit %>
-  </div>
+
+  <%= form.fields_for :stations do |stations_form| %>
+  <h3>最寄り駅</h3>
+    <div>
+      <%= stations_form.label :路線 %>
+      <%= stations_form.text_field :line %>
+    </div>
+    <div>
+      <%= stations_form.label :駅名 %>
+      <%= stations_form.text_field :station %>
+    </div>
+    <div>
+      <%= stations_form.label :徒歩 %>
+      <%= stations_form.text_field :on_foot %>
+    </div>
+  <% end %>
+  <div class="actions"><%= form.submit %></div>
 <% end %>
