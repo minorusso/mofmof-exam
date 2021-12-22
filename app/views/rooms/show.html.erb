@@ -1,8 +1,45 @@
-<h1>Rooms#show</h1>
-<p>物件名: <%= @room.name %></p>
-<p>賃料: <%= @room.rent %></p>
-<p>住所: <%= @room.address %></p>
-<p>築年数: <%= @room.age %></p>
-<p>備考: <%= @room.note %></p>
-
+<table>
+  <tbody>
+  <tr>
+    <th>物件名</th>
+    <td><%= @room.name %></td>
+  </tr>
+  <tr>
+    <th>賃料</th>
+    <td><%= @room.rent %></td>
+  </tr>
+  <tr>
+    <th>住所</th>
+    <td><%= @room.address %></td>
+  </tr>
+  <tr>
+    <th>築年数</th>
+    <td><%= @room.age %></td>
+  </tr>
+  <tr>
+    <th>備考</th>
+    <td><%= @room.note %></td>
+  </tr>
+  </tbody>
+</table>
+<% n = 0%>
+<% @room.stations.each do |station|%>
+<table>
+<h3>最寄り駅<%=n += 1%></h3>
+  <tr>
+    <th>路線名</th>
+    <td><%= station.line %></td>
+  </tr>
+    <tr>
+    <th>駅名</th>
+    <td><%= station.station %></td>
+  </tr>
+    <tr>
+    <th>徒歩分数</th>
+    <td><%= station.on_foot %></td>
+  </tr>
+  <% end %>
+</table>
+<%= link_to '編集', edit_room_path(@room) %> |
+<%= link_to '戻る', rooms_path %>
 
