@@ -1,4 +1,4 @@
-<%= form_with(model: @room, local: true) do |form| %>
+<%= form_with(model: @room, local: true) do |f| %>
   <% if @room.errors.any? %>
     <div id="error_explanation">
       <h2><%= @room.errors.count %>件のエラーがあります。</h2>
@@ -9,42 +9,29 @@
       </ul>
     </div>
   <% end %>
-  <div class="name">
-    <%= form.label :物件名 %>
-    <%= form.text_field :name %>
+  <div>
+    <p><%= f.label '物件名' %></p>
+    <p><%= f.text_field :name %></p>
+    <p><%= f.label '賃料' %></p>
+    <p><%= f.text_field :rent %>円</p>
+    <p><%= f.label '住所' %></p>
+    <p><%= f.text_field :address %></p>
+    <p><%= f.label '築年数' %></p>
+    <p><%= f.text_field :age %>年</p>
+    <p><%= f.label '備考' %></p>
+    <p><%= f.text_area :note %></p>
   </div>
-  <div class="rent">
-    <%= form.label :賃料 %>
-    <%= form.text_field :rent %>
-  </div>
-  <div class="address">
-    <%= form.label :住所 %>
-    <%= form.text_field :address %>
-  </div>
-  <div class="age">
-    <%= form.label :築年数 %>
-    <%= form.text_field :age %>
-  </div>
-  <div class="note">
-    <%= form.label :備考 %>
-    <%= form.text_field :note %>
-  </div>
+    <hr>
   <% n = 0 %>
-  <%= form.fields_for :stations do |stations_form| %>
-  <h3>最寄り駅<%= n += 1%></h3>
-    <div>
-      <%= stations_form.label :路線 %>
-      <%= stations_form.text_field :line %>
-    </div>
-    <div>
-      <%= stations_form.label :駅名 %>
-      <%= stations_form.text_field :station %>
-    </div>
-    <div>
-      <%= stations_form.label :徒歩 %>
-      <%= stations_form.text_field :on_foot %>
-    </div>
+  <%= f.fields_for :stations do |f|%>
+    <h3>最寄り駅<%= n += 1%></h3>
+    <p><%= f.label '路線' %></p>
+    <p><%= f.text_field :line %></p>
+    <p><%= f.label '駅名' %></p>
+    <p><%= f.text_field :station %></p>
+    <p><%= f.label '徒歩' %></p>
+    <p><%= f.text_field :on_foot %>分</p>
   <% end %>
-  <div class="actions"><%= form.submit %></div>
+  <div class="actions"><%= f.submit %></div>
   <%= link_to 'Back', rooms_path %>
 <% end %>
