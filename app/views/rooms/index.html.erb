@@ -1,0 +1,23 @@
+<h1>物件一覧</h1>
+<p><%= notice %></p>
+<table>
+  <% @rooms.each do |room| %>
+  <tr>
+    <th>物件名</th>
+    <td><%= room.name %></td>
+    <th>賃料</th>
+    <td><%= room.rent %></td>
+    <th>住所</th>
+    <td><%= room.address %></td>
+    <th>築年数</th>
+    <td><%= room.age %></td>
+    <th>備考</th>
+    <td><%= room.note %></td>
+    <td><%= link_to '詳細', room_path(room.id) %></td>
+    <td><%= link_to '編集', edit_room_path(room.id) %></td>
+    <td><%= link_to '削除', room_path(room.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
+  </tr>
+  <% end %>
+</table>
+<td><%= link_to '物件を登録する', new_room_path %></td>
+
