@@ -51,9 +51,10 @@ class RoomsController < ApplicationController
                                   :age, 
                                   :note,
                                   stations_attributes:[
+                                                      :id,
+                                                      :room_id,
                                                       :line,
                                                       :station,
                                                       :on_foot])
   end
-
 end

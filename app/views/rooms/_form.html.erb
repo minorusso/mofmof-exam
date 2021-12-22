@@ -29,9 +29,9 @@
     <%= form.label :備考 %>
     <%= form.text_field :note %>
   </div>
-
+  <% n = 0 %>
   <%= form.fields_for :stations do |stations_form| %>
-  <h3>最寄り駅</h3>
+  <h3>最寄り駅<%= n += 1%></h3>
     <div>
       <%= stations_form.label :路線 %>
       <%= stations_form.text_field :line %>
@@ -46,4 +46,5 @@
     </div>
   <% end %>
   <div class="actions"><%= form.submit %></div>
+  <%= link_to 'Back', rooms_path %>
 <% end %>
